@@ -1,0 +1,40 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: Python application
+
+on:
+  schedule:
+    - cron:  '5 0 * * *'
+  workflow_dispatch: {}
+
+
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests bs4
+    - uses: actions/checkout@v3
+    - uses: dawidd6/action-download-artifact@v2
+      continue-on-error: true
+      with:
+        workflow: python-app.yml
+    - run: mv artifact/${{ secrets.ACCOUNT }}.pkl ./
+      continue-on-error: true
+    - name: run baha login by cli
+      run: |
+        python3 main.py ${{ secrets.ACCOUNT }}  ${{ secrets.PASSWORD }}
+    - uses: actions/upload-artifact@v3
+      with:
+        path: '${{ secrets.ACCOUNT }}.pkl'
