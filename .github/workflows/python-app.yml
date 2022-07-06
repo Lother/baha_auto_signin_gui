@@ -22,7 +22,7 @@ jobs:
       id: cache-pip
       uses: actions/cache@v3
       with:
-        path: /usr/local/lib/python3.*/site-packages/ 
+        path: /usr/local/lib/python3.10/site-packages/ 
         key: cache-pip
       continue-on-error: true
     - name: Set up Python 3.10
