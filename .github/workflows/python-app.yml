@@ -27,15 +27,13 @@ jobs:
         python -m pip install --upgrade pip
         pip install requests bs4
     - uses: actions/checkout@v3
-    - uses: dawidd6/action-download-artifact@v2
-      continue-on-error: true
+    - name: Cache Login Session
+      id: cache-session
+      uses: actions/cache@v3
       with:
-        workflow: python-app.yml
-    - run: mv artifact/${{ secrets.ACCOUNT }}.pkl ./
+        path: '${{ secrets.ACCOUNT }}.pkl'
+        key: '${{ secrets.ACCOUNT }}.pkl'
       continue-on-error: true
     - name: run baha login by cli
       run: |
         python3 main.py ${{ secrets.ACCOUNT }}  ${{ secrets.PASSWORD }}
-    - uses: actions/upload-artifact@v3
-      with:
-        path: '${{ secrets.ACCOUNT }}.pkl'
