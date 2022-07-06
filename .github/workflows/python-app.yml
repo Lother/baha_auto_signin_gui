@@ -18,6 +18,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    - name: Cache pip lib 
+      id: cache-pip
+      uses: actions/cache@v3
+      with:
+        path: /usr/local/lib/python3.*/site-packages/ 
+        key: cache-pip
+      continue-on-error: true
     - name: Set up Python 3.10
       uses: actions/setup-python@v3
       with:
