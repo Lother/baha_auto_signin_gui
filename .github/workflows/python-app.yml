@@ -30,9 +30,9 @@ jobs:
       id: cache-session
       uses: actions/cache@v3
       with:
-        path: '${{ secrets.ACCOUNT }}.pkl'
-        key: '${{ secrets.ACCOUNT }}.pkl.${{ job.container.id }}'
-        restore-keys: '${{ secrets.ACCOUNT }}.pkl'
+        path: ${{ secrets.ACCOUNT }}.pkl
+        key: ${{ secrets.ACCOUNT }}.pkl.${{ github.run_id }}-${{ github.run_attempt }}
+        restore-keys: ${{ secrets.ACCOUNT }}.pkl
       continue-on-error: true
     - name: run baha login by cli
       run: |
