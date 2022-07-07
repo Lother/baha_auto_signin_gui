@@ -32,6 +32,7 @@ jobs:
       with:
         path: '${{ secrets.ACCOUNT }}.pkl'
         key: '${{ secrets.ACCOUNT }}.pkl'
+        restore-keys: '${{ secrets.ACCOUNT }}.pkl'
       continue-on-error: true
     - name: run baha login by cli
       run: |
