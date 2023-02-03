@@ -12,7 +12,7 @@ class Baha():
         self.log_file_name = log_file_name
         self.account = account
         self.MAIN_HEADERS = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36',
             'Referer': 'https://www.gamer.com.tw/'
         }
         self.MAIN_URL = "https://www.gamer.com.tw"
